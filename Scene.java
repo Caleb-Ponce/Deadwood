@@ -1,10 +1,12 @@
+import java.util.*;
+
 public class Scene{
-    public List<string> postions;
+    public List<String> postions;
     public int budget;
-    private string room;
+    private String room;
 
 
-    public void scene(string room){
+    public void scene(String room){
 
     }
     public void checkPlayerCounters(int player, int budget){
@@ -13,22 +15,22 @@ public class Scene{
     public void endScene(){
 
     }
-    public void payBonus(List<integer> players){
+    public void payBonus(List<Integer> players){
 
     }
     public void payForWork(int player){
 
     }
-    public void act(int player, string position){
+    public void act(int player, String position){
 
     }
     public void rehearse(int player){
 
     }
-    public void checkRoll(List<integer> rolls){
+    public void checkRoll(List<Integer> rolls){
 
     }
-    public void addPlayer(int player, string position){
+    public void addPlayer(int player, String position){
 
     }
 }

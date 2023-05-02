@@ -1,5 +1,7 @@
+import java.util.*;
+
 public class Board{
-    public List<room> rooms;
+    public List<Room> rooms;
     private int sceneCount;
     public CastingOffice castingOffice;
 

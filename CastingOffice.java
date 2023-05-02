@@ -1,6 +1,8 @@
+import java.util.*;
+
 public class CastingOffice{
 
-    private List<integer> showRankCosts;
+    private List<Integer> showRankCosts;
 
     public void checkCanUpgrade(int player){
 

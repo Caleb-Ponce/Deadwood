@@ -1,6 +1,4 @@
-package Deadwood;
-
-public class Position {
+public class Position extends Scene{
     public int rank;
     public boolean onCard; 
 }
