@@ -1,14 +1,16 @@
 import java.util.*;
 
 public class Scene{
-    public List<String> postions;
+    public String name;
+    public Position[] postions;
+    public String image;
+    public int sceneNum;
+    public String description;
     public int budget;
     private String room;
 
 
-    public void scene(String room){
-
-    }
+    
     public void checkPlayerCounters(int player, int budget){
 
     }
