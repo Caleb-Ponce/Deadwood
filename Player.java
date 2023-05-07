@@ -3,8 +3,7 @@ public class Player{
     private int credits;
     private int rank;
     private int rehearsal_Counters;
-
-
+    
     public void Player(){
 
     }

@@ -2,15 +2,22 @@ import java.util.*;
 
 public class Scene{
     public String name;
-    public Position[] postions;
+    public Position[] positions;
     public String image;
-    public int sceneNum;
+    public String sceneNum;
     public String description;
-    public int budget;
+    public String budget;
     private String room;
 
+    public Scene(String name, Position[] positions, String image, String sceneNum, String description, String budget){
+        this.name = name;
+        this.positions = positions;
+        this.image = image;
+        this.sceneNum = sceneNum;
+        this.description = description;
+        this.budget = budget;
+    }
 
-    
     public void checkPlayerCounters(int player, int budget){
 
     }
