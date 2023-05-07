@@ -33,6 +33,69 @@ public class XMLParser{
       doc.getDocumentElement().normalize();
       System.out.print("Root element: ");
       System.out.println(doc.getDocumentElement().getNodeName());
+
+      NodeList list = doc.getElementsByTagName("set");
+
+      for (int temp = 0; temp < list.getLength(); temp++) {
+        Node nNode = list.item(temp);
+
+        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+          Element elem = (Element) nNode;
+          // get set name
+          String name = elem.getAttribute("name");
+          //tests
+          System.out.println();
+          System.out.println(name);
+          System.out.println();
+
+          // parse neighbors
+          NodeList neighbors = elem.getElementsByTagName("neighbor");
+          String[] neighborsList = new String[neighbors.getLength()];
+
+          for (int i = 0; i < neighbors.getLength(); i++) {
+            Element elementAttribute = (Element) neighbors.item(i);
+            neighborsList[i] = elementAttribute.getAttribute("name");
+            //test
+            System.out.println(neighborsList[i]);
+          }
+          // get area
+          Element areaElem = (Element) elem.getElementsByTagName("area").item(0);
+          String x = areaElem.getAttribute("x");
+          String y = areaElem.getAttribute("y");
+          String h = areaElem.getAttribute("h");
+          String w = areaElem.getAttribute("w");
+          System.out.println(x + " " + y + " " + h + " " + w);
+
+          //parse takes
+          Element takesElem = (Element) elem.getElementsByTagName("takes").item(0);
+          NodeList takes = takesElem.getElementsByTagName("take");
+          int numbTakes = takes.getLength();
+          //test
+          System.out.println(numbTakes);
+
+          // parse positions
+          Element partsElem = (Element) elem.getElementsByTagName("parts").item(0);
+          NodeList parts = elem.getElementsByTagName("part");
+
+          for (int i = 0; i < parts.getLength(); i++) {
+            Element partEle = (Element) parts.item(i);
+            String partName = partEle.getAttribute("name");
+            String partRank = partEle.getAttribute("level");
+            Element areaElem2 = (Element) partEle.getElementsByTagName("area").item(0);
+            String xPart = areaElem2.getAttribute("x");
+            String yPart = areaElem2.getAttribute("y");
+            String hPart = areaElem2.getAttribute("h");
+            String wPart = areaElem2.getAttribute("w");
+            Node lineNode = partEle .getElementsByTagName("line").item(0);
+            String partLine = lineNode.getTextContent();
+            //test
+            System.out.println(partName);
+            System.out.println(partLine);
+
+          }
+        }
+      }
+
     }
     catch (Exception e) {
        e.printStackTrace();
