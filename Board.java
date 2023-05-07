@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class Board{
-    public Room[] rooms;            // trailer = rooms[10], office = rooms[11]
-    public Scene[] scenes;
+    private Room[] rooms;            // trailer = rooms[10], office = rooms[11]
+    private Scene[] scenes;
     private int sceneCount;
     public CastingOffice castingOffice;
 
@@ -14,12 +14,14 @@ public class Board{
     public void movePiece(){
       // future used with gui can be used with terminal based
     }
+
     public void resetBoard(){
       // return players to trailer
       // trailer is rooms[10]
       // set out new scenes for each room
       // remove players from remaining scenes
     }
+
     public void checkSceneCount(){
       //TODO!!!
       /* logic
@@ -28,6 +30,7 @@ public class Board{
         if scene is null add 1 to count
       */
     }
+
     public void placeNewScenes(){
       //TODO!!!
       /* logic
@@ -36,8 +39,26 @@ public class Board{
         room.addScene(randomScene)
         remove scene from list of usable scenes
       */
+    }
 
+    public Room getRoom(String name) {
+      for (Room curRoom : this.rooms) {
+        String curName = curRoom.getName();
+        if (name.equals(curName)){
+          return curRoom;
+        }
+      }
+    }
 
+    public int getSceneCount() {
+      return this.sceneCount;
+    }
 
+    public void lowerSceneCount() {
+      this.sceneCount--;
+    }
+
+    public Room[] getRooms(){
+        return this.rooms;
     }
 }

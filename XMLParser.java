@@ -200,4 +200,52 @@ public class XMLParser{
     }
     return null;
   }
+
+  public String[] parseUpgrades() {
+    // positions created by the board are not on card
+    // position defined as part in the xml
+    // TODO parse Trailer and office
+    try {
+      File inputFile = new File(BOARDFILE);
+      DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+      Document doc = dBuilder.parse(inputFile);
+      doc.getDocumentElement().normalize();
+      // parse xml into rooms
+      Room[] rooms = new Room[12];
+      NodeList list = doc.getElementsByTagName("upgrade");
+
+      /*
+        <upgrade level="2" currency="dollar" amt="4" >
+          <area x="98" y="542" h="19" w="19" />
+        </upgrade>
+      */
+      String[] upgrade = new String[list.getLength()];
+      for (int temp = 0; temp < list.getLength(); temp++) {
+        Node nNode = list.item(temp);
+
+        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+          Element elem = (Element) nNode;
+          String name = elem.getAttribute("level");
+          String currency = elem.getAttribute("currency");
+          String amt = elem.getAttribute("amt");
+
+          Element area = (Element) elem.getElementsByTagName("area").item(0);
+          String[] upgradeArea = new String[4];
+          upgradeArea[0] = area.getAttribute("x");
+          upgradeArea[1] = area.getAttribute("y");
+          upgradeArea[2] = area.getAttribute("h");
+          upgradeArea[3] = area.getAttribute("w");
+
+          String curUpgrade = name + " " + currency + " " + amt;
+          upgrade[temp] = curUpgrade;
+        }
+      }
+
+    }
+    catch (Exception e) {
+       e.printStackTrace();
+    }
+    return null;
+  }
 }
