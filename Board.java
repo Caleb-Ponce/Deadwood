@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.Random;
 
 public class Board{
     private Room[] rooms;            // trailer = rooms[10], office = rooms[11]
@@ -11,7 +12,7 @@ public class Board{
         this.rooms = Xml.parseBoard();
         this.scenes = Xml.parseCards();
     }
-    public void movePiece(){
+    public void movePiece(String location, List<integer> player){
       // future used with gui can be used with terminal based
     }
 
@@ -20,6 +21,8 @@ public class Board{
       // trailer is rooms[10]
       // set out new scenes for each room
       // remove players from remaining scenes
+      movePiece(Trailer);
+      placeNewScenes();
     }
 
     public void checkSceneCount(){
@@ -39,6 +42,12 @@ public class Board{
         room.addScene(randomScene)
         remove scene from list of usable scenes
       */
+      Random rand = new Random(); 
+      for(int i = 0; i < 10; i++){
+        int randomScene = rand.nextInt(scenes.length()); //get index or frandom scene
+        room[i] = scenes[randomScene]
+        scenes.remove(scenes[randomScene]);  //remove scene from list of usable scenes
+      }
     }
 
     public Room getRoom(String name) {
