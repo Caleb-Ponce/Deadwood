@@ -36,4 +36,8 @@ public class Position{
       }
       return null;
     }
+
+    public void clearPose(){
+      this.player = null;
+    }
 }

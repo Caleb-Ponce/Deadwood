@@ -1,18 +1,23 @@
 public class Player{
-    private int money;
-    private int credits;
-    private int rank;
-    private int rehearsalCounters;
+    private int money = 0;
+    private int credits = 0;
+    private int rank = 1;
+    private int rehearsalCounters = 0;
+    private Room room = null;
+    private boolean onCard = false;
 
-    public void Player(){
-
+    public Player(){
     }
-    public void Player(int Money, int Credits){
 
+    public Player(int money, int credits){
+      this.money = money;
+      this.credits = credits;
     }
-    public void Player(int rank){
 
+    public Player(int rank){
+      this.rank = rank;
     }
+
     public void move(){
 
     }
@@ -37,5 +42,17 @@ public class Player{
     }
     public void addRehearsalCounter() {
       this.rehearsalCounters += 1;
+    }
+    public void setRoom(Room room) {
+      this.room = room;
+    }
+    public Room getRoom(Room room) {
+      return this.room;
+    }
+    public void rehearsalZero(){
+      this.rehearsalCounters = 0;
+    }
+    public void setOnCard(boolean bool) {
+      this.onCard = bool;
     }
 }

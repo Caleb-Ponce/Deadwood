@@ -39,4 +39,10 @@ public class Room{
     public String[] getNeighbors(){
       return this.neighbors;
     }
+
+    public void clearPoses() {
+      for (Position pos : this.positions) {
+        pos.clearPose();
+      }
+    }
 }
