@@ -45,4 +45,7 @@ public class Room{
         pos.clearPose();
       }
     }
+    public Scene getScene(){
+      return this.scene;
+    }
 }

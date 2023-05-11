@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.Random;
 
 public class Board{
     private Room[] rooms;            // trailer = rooms[10], office = rooms[11]
@@ -12,8 +11,9 @@ public class Board{
         this.rooms = Xml.parseBoard();
         this.scenes = Xml.parseCards();
     }
-    public boolean movePiece(String location, Player player){
-      // future used with gui can be used with terminal based
+
+    public boolean movePiece(String location, Player player) {
+      // future, used with gui can be used with terminal based
         for (Room curRoom : this.rooms) {
           if (curRoom.getName().equals(location)){
             player.setRoom(curRoom);
@@ -25,20 +25,25 @@ public class Board{
 
     public void placeNewScenes(){
       Random rand = new Random();
+      Scene[] curScenes = this.scenes;
       for(int i = 0; i < 10; i++){
-        int randomScene = rand.nextInt(scenes.length); //get index or frandom scene
-        this.rooms[i].addScene(scenes[randomScene]);
-
+        int randomScene = rand.nextInt(curScenes.length); //get index or frandom scene
+        this.rooms[i].addScene(curScenes[randomScene]);
         //remove scene from list of usable scenes
         //maybe switch to storing scenes in linked list for better optimization
-        Scene[] copy = new Scene[scenes.length - 1];
-        for (int i = 0, j = 0; i < scenes.length; i++) {
-            if (i != randomScene) {
-                copy[j++] = scenes[i];
+        Scene[] copy = new Scene[curScenes.length - 1];
+        for (int n = 0, j = 0; n < curScenes.length; n++) {
+            if (n < randomScene) {
+                copy[j] = curScenes[n];
+                j++;
+            } else if (n > randomScene) {
+                copy[j] = curScenes[n];
+                j++;
             }
         }
-        this.scenes = copy;
+        curScenes = copy;
       }
+      this.scenes = curScenes;
       this.sceneCount = 10;
     }
 
@@ -56,6 +61,7 @@ public class Board{
           return curRoom;
         }
       }
+      return null;
     }
 
     public int getSceneCount() {
@@ -68,5 +74,8 @@ public class Board{
 
     public Room[] getRooms(){
         return this.rooms;
+    }
+    public Scene[] getScenes(){
+      return this.scenes;
     }
 }

@@ -152,7 +152,6 @@ public class XMLParser{
       Scene[] scenes = new Scene[40];
 
       NodeList list = doc.getElementsByTagName("card");
-
       for (int temp = 0; temp < list.getLength(); temp++) {
         Node nNode = list.item(temp);
 

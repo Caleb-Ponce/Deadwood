@@ -43,11 +43,14 @@ public class GameManager{
   public void gameLoop(){
     // constant loop while the game is going
     // loops from one player to the next
+
+
   }
 
   public void resetBoard() {
+    String trailer = "Trailer";
     for (Player player : players) {
-      this.board.movePiece("Trailer", player);
+      this.getBoard().movePiece(trailer, player);
       player.rehearsalZero();
       player.setOnCard(false);
     }
@@ -76,6 +79,9 @@ public class GameManager{
     this.control = control;
   }
 
+  public Board getBoard() {
+    return this.board;
+  }
 
 
 
