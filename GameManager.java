@@ -73,6 +73,8 @@ public class GameManager{
   public void endGame(){
     //TODO
     //calc player scores decide winner
+    // 1 point for each $, 1 point for each credit
+    //5 points x rank
   }
 
   public void setController(Controller control) {
