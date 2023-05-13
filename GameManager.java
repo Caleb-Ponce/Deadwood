@@ -10,7 +10,12 @@ public class GameManager{
     this.board = new Board();
     // get how many players
     String message = "please enter the number of players: ";
-    this.numbPlayers = this.control.getInputInt(message, null);
+    String[] testOptions = new String[]{"CANCEL", "2 Players", "3 Players", "4 Players", "5 Players", "6 Players", "7 Players", "8 Players"};
+    this.numbPlayers = this.control.getInputInt(message, testOptions);
+    if (this.numbPlayers == 0) {
+      return;
+    }
+    this.numbPlayers++;
     if (numbPlayers == 2 || numbPlayers == 3) {
       this.days = 3;
     } else {
