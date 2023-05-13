@@ -24,9 +24,6 @@ public class Player{
     public void act(){
 
     }
-    public void upgrade(){
-
-    }
 
     public int getMoney(){
       return this.money;

@@ -43,6 +43,26 @@ public class Controller{
         return sc.nextInt();
       }
   }
+  public int getInputString(String message, String[] options){
+    Scanner sc= new Scanner(System.in);
+    System.out.println(message);
+    // optional print out individual options
+    if (options != null) {
+      for (int i = 0; i < options.length; i++) {
+        int printI = i + 1;
+        System.out.println( "[" + printI +"] " + options[i]);
+      }
+      int optionPicked = sc.nextInt();
+      while (optionPicked < 1 || optionPicked > options.length) {
+        System.out.println("Please choose a number between 1 and " + options.length);
+        optionPicked = sc.nextInt() - 1;
+      }
+      return optionPicked;
+    } else {
+      // may need to catch invalid input or input that isnt a number
+      return sc.nextInt();
+    }
+}
 
 
 }
