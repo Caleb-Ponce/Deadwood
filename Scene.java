@@ -37,9 +37,6 @@ public class Scene{
     public void payForWork(Player player){
 
     }
-    public void act(int player, String position){
-
-    }
     public void rehearse(Player player){
       player.addRehearsalCounter();
     }

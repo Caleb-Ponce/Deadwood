@@ -49,8 +49,11 @@ public class GameManager{
     // constant loop while the game is going
     // loops from one player to the next
     for(int i = 0; i< players.len(); i++){
-      move()
-      
+      if(this.player.onCard == true){
+        this.player.Act();
+      }else{
+        this.player.move();
+      }
     }
 
   }
@@ -83,10 +86,12 @@ public class GameManager{
     //calc player scores decide winner
     // 1 point for each $, 1 point for each credit
     //5 points x rank
-    List<Integer> finalScores;
+    Integer[] finalScores = new Integer[numbPlayers];
     for (int i = 0; i<players.len(); i++){
-      finalScores[i] = players[i].Money + players[i].Credits + (players[i].Rank*5);
+      finalScores[i] = this.players[i].Money + this.players[i].Credits + (this.players[i].Rank*5);
+      Syste
     }
+
 
 
   }

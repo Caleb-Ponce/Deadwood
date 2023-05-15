@@ -19,7 +19,28 @@ public class Player{
     }
 
     public void move(){
-      
+      Room[] neighbors = this.room.getNeighbors();
+      String message = "choose where to go.";
+      int responce = controller.getInputInt(message, neighbors);
+      if( responce == 1){
+        continue;
+      }else{
+        Board newRoom = board.getRoom(neighbors[responce]);
+        setRoom(newRoom);
+        if(Room.getScene() == Null){
+          System.out.print("You have entered a room, there is no scene in this room.")
+        }else if(Room.getScene != Null){
+          Position[] choices = Room.getPositions()
+          String message = "You have entered a room, choose a position.";
+          int responce = Controller.getInputInt(message, choices);
+          if(/*position chosen is avalable*/){
+            /*take position */
+            onCard = true;
+          }else(
+            continue;
+          )
+        }
+      }
     }
     public void act(){
 
