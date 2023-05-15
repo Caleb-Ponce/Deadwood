@@ -40,9 +40,6 @@ public class Scene{
     public void rehearse(Player player){
       player.addRehearsalCounter();
     }
-    public void checkRoll(List<Integer> rolls){
-
-    }
     public void addPlayer(int player, String position){
 
     }

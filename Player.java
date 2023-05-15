@@ -43,7 +43,10 @@ public class Player{
       }
     }
     public void act(){
-
+      int roll = (int)(Math.random()*6+1);
+      if(roll > this.scene.getBudget()){
+        this.Room.removeShotCounter();
+      }
     }
 
     public int getMoney(){
