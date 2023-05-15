@@ -48,7 +48,10 @@ public class GameManager{
   public void gameLoop(){
     // constant loop while the game is going
     // loops from one player to the next
-
+    for(int i = 0; i< players.len(); i++){
+      move()
+      
+    }
 
   }
 
@@ -80,6 +83,12 @@ public class GameManager{
     //calc player scores decide winner
     // 1 point for each $, 1 point for each credit
     //5 points x rank
+    List<Integer> finalScores;
+    for (int i = 0; i<players.len(); i++){
+      finalScores[i] = players[i].Money + players[i].Credits + (players[i].Rank*5);
+    }
+
+
   }
 
   public void setController(Controller control) {
