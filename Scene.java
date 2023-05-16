@@ -27,6 +27,8 @@ public class Scene{
     }
 
     public void endScene(){
+      payForWork(/*players on card */);
+      payBonus(/*extras */);
       //pay out players and remove them from the scene
 
 
@@ -34,6 +36,9 @@ public class Scene{
     public void payBonus(Player[] players){
         //probably should check all of the players on the different positions based on positions
         //doesnt need to take in players
+        for(int i = 0; i < budget; i++){
+          players[i%players.len()].money += Math.random()*6+1;
+        }
     }
     public void payForWork(Player player){
       this.player.money += this.position.rank;
