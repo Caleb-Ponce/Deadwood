@@ -29,19 +29,20 @@ public class Scene{
     public void endScene(){
       //pay out players and remove them from the scene
 
+
     }
     public void payBonus(Player[] players){
         //probably should check all of the players on the different positions based on positions
         //doesnt need to take in players
     }
     public void payForWork(Player player){
-
+      this.player.money += this.position.rank;
     }
     public void rehearse(Player player){
       player.addRehearsalCounter();
     }
     public void addPlayer(int player, String position){
-
+      
     }
 
     public String getName() {

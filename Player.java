@@ -34,7 +34,7 @@ public class Player{
           String message = "You have entered a room, choose a position.";
           int responce = Controller.getInputInt(message, choices);
           if(/*position chosen is avalable*/){
-            /*take position */
+            Scene.addPlayer(choices[responce]);
             onCard = true;
           }else(
             continue;
