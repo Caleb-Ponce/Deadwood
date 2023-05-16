@@ -19,34 +19,53 @@ public class Player{
     }
 
     public void move(){
+      Controller controller = new Controller();
       Room[] neighbors = this.room.getNeighbors();
       String message = "choose where to go.";
       int responce = controller.getInputInt(message, neighbors);
-      if( responce == 1){
+      if( responce == 0){
+        //needs logic for in a room with a scene or in the casting office!!!!!
         continue;
       }else{
-        Board newRoom = board.getRoom(neighbors[responce]);
-        setRoom(newRoom);
-        if(Room.getScene() == Null){
-          System.out.print("You have entered a room, there is no scene in this room.")
-        }else if(Room.getScene != Null){
-          Position[] choices = Room.getPositions()
-          String message = "You have entered a room, choose a position.";
-          int responce = Controller.getInputInt(message, choices);
-          if(/*position chosen is avalable*/){
-            Scene.addPlayer(choices[responce]);
-            onCard = true;
-          }else(
-            continue;
-          )
+        Room newRoom = board.getRoom(neighbors[responce]);
+        this.setRoom(newRoom);
+        if(this.room.getScene() == Null){
+          System.out.print("You have entered a room, there is no scene in this room.");
+        }else if(this.room.getScene() != Null){
+          // make this its own command
+          ArrayList<Position> canPoses = this.room.getScene().checkCanJoin;
+          if (canPoses.isEmpty()) {
+            System.out.println("sorry no open positions that you can join in this room");
+          } else {
+            String[] poseOptions = new String[canPoses.size() + 1];
+            poseOptions[0] = "CANCEL";
+            for (int i = ; i <= canPoses.size(); i++) {
+              String name = canPoses.get(i).getName();
+              String rank = String.valueOf(canPoses.get(i).getRank());
+              String oncard = "";
+              if (canPoses.get(i).getOnCard) {
+                oncard = " on Scene";
+              } else {
+                oncard = " off Scene";
+              }
+              poseOptions[i] = name + " " + rank + oncard;
+            }
+            String message2 = "There is a Scene you can join, Please choose a Position";
+            int join = controller.getInputInt(message2, poseOptions);
+            if (join != 0) {
+              canPoses.get(join).setPlayer(this);
+              this.onCard = true;
+              System.out.println("successfully joined scene with position" + poseOptions[join]);
+            }
+          }
         }
       }
     }
+
+
     public void act(){
-      int roll = (int)(Math.random()*6+1);
-      if(roll > this.scene.getBudget()){
-        this.Room.removeShotCounter();
-      }
+      // calls the scene to act
+      this.room.getScene().act(this);
     }
 
     public int getMoney(){
@@ -75,5 +94,8 @@ public class Player{
     }
     public void setOnCard(boolean bool) {
       this.onCard = bool;
+    }
+    public void addMoney(int amount){
+      this.money += amount;
     }
 }

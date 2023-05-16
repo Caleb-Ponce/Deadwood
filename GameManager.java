@@ -1,10 +1,12 @@
 public class GameManager{
-  Controller control;
-  Player[] players;
-  Board board;
-  int numbPlayers;
-  int days;
-  int currentRound;
+  // probably make this singleton
+  public Controller control;
+  public Player[] players;
+  public Board board;
+  public int numbPlayers;
+  public int days;
+  public int currentRound;
+  public boolean endGame;
 
   public void startGame() {
     this.board = new Board();
@@ -48,11 +50,15 @@ public class GameManager{
   public void gameLoop(){
     // constant loop while the game is going
     // loops from one player to the next
-    for(int i = 0; i< players.len(); i++){
-      if(this.player.onCard == true){
-        this.player.Act();
-      }else{
-        this.player.move();
+    int i = 0;
+    while(!this.endGame){
+      // if in casting office
+      // this.player makes no sense
+      Player curPlayer = this.getPlayers()[i];
+      if (curPlayer.getOnCard() == true) {
+        curPlayer.Act();
+      } else {
+        curPlayer.move();
       }
     }
 
@@ -87,13 +93,20 @@ public class GameManager{
     // 1 point for each $, 1 point for each credit
     //5 points x rank
     Integer[] finalScores = new Integer[numbPlayers];
+    int biggest = 0;
+    int winner = 0;
     for (int i = 0; i<players.len(); i++){
       finalScores[i] = this.players[i].Money + this.players[i].Credits + (this.players[i].Rank*5);
-      Syste
+      System.out.println("Player " + i + ": " + finalScores[i]);
+      if (finalScores[i] > biggest) {
+        biggest = finalScores[i];
+        winner = i;
+      } else if (finalScores[i] == biggest) {
+        System.out.println("there may be a tie");
+      }
     }
-
-
-
+    System.out.println("Player " + winner + ": wins with " + finalScores[winner] + " points");
+    this.endGame = true;
   }
 
   public void setController(Controller control) {

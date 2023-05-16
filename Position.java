@@ -36,6 +36,9 @@ public class Position{
       }
       return null;
     }
+    public void setPlayer(Player player) {
+      this.player = player;
+    }
 
     public void clearPose(){
       this.player = null;

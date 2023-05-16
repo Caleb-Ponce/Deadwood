@@ -29,8 +29,8 @@ public class Board{
       for(int i = 0; i < 10; i++){
         int randomScene = rand.nextInt(curScenes.length); //get index or frandom scene
         this.rooms[i].addScene(curScenes[randomScene]);
+        this.rooms[i].scene.setOffCard(this.rooms[i].getPositions());
         //remove scene from list of usable scenes
-        //maybe switch to storing scenes in linked list for better optimization
         Scene[] copy = new Scene[curScenes.length - 1];
         for (int n = 0, j = 0; n < curScenes.length; n++) {
             if (n < randomScene) {
