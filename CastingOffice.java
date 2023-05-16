@@ -33,6 +33,7 @@ public class CastingOffice{
         this.Type = this.control.getInputInt(message, [Money, Credits]);
         if(checkCanUpgrade(Type)){
           chargeForUpgrade(player.rank, Type);
+          System.out.print("Congratulations, you arr now rank " +  this.player.rank + " now back to work!")
         }else{
           System.out.print("You don't have enough to upgrade yet, come back after you've done a few more scenes")
         }
