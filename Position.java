@@ -22,7 +22,7 @@ public class Position{
       return this.rank;
     }
 
-    public String getline() {
+    public String getLine() {
       return this.line;
     }
 

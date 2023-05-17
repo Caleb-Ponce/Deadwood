@@ -1,13 +1,11 @@
 public class DeadWood{
 
   public static void main(String args[]) {
-    Controller control = new Controller();
-    GameManager manager = new GameManager();
-    manager.setController(control);
-    control.start(manager);
+    GameManager manager = GameManager.getGameManager();
+    if (args.length == 0) {
+      manager.startGame("10");
+    } else {
+      manager.startGame(args[0]);
+    }
   }
-
-
-
-
 }

@@ -3,13 +3,6 @@ import java.util.*;
 // and sends messages to the user
 public class Controller{
 
-  GameManager manager;
-  // add veiw to this later
-
-  public void start(GameManager manager){
-    this.manager = manager;
-    manager.startGame();
-  }
   /*
    prints a message to the console and waits for return int
    optionally can be given a String[], else pass null
@@ -26,6 +19,7 @@ public class Controller{
    */
   public int getInputInt(String message, String[] options){
       Scanner sc= new Scanner(System.in);
+      System.out.println();
       System.out.println(message);
       int optionPicked = -1;
       String check = "test";
@@ -35,22 +29,26 @@ public class Controller{
           int printI = i + 1;
           System.out.println( "[" + printI +"] " + options[i]);
         }
+        System.out.print("Your choice: ");
         // check input was a number and that it has the right value
         if (sc.hasNextInt()) {
-          optionPicked = sc.nextInt() - 1;
-          if (optionPicked >= 0 && optionPicked < options.length) {
-            return optionPicked;
+          optionPicked = sc.nextInt();
+          if (optionPicked > 0 && optionPicked <= options.length) {
+            return optionPicked - 1;
           }
         }
         // option chosen was to high or too low
         System.out.println("Please choose a number between 1 and " + options.length);
+        System.out.print("Your choice: ");
         while (optionPicked < 1 || optionPicked > options.length) {
           while (!sc.hasNextInt()) {
             System.out.println("Please input a number");
+            System.out.print("Your choice: ");
             sc.next();
           }
           optionPicked = sc.nextInt();
           System.out.println("Please choose a number between 1 and " + options.length);
+          System.out.print("Your choice: ");
         }
         optionPicked--;
 
@@ -68,26 +66,5 @@ public class Controller{
       }
       return optionPicked;
   }
-  public int getInputString(String message, String[] options){
-    Scanner sc= new Scanner(System.in);
-    System.out.println(message);
-    // optional print out individual options
-    if (options != null) {
-      for (int i = 0; i < options.length; i++) {
-        int printI = i + 1;
-        System.out.println( "[" + printI +"] " + options[i]);
-      }
-      int optionPicked = sc.nextInt();
-      while (optionPicked < 1 || optionPicked > options.length) {
-        System.out.println("Please choose a number between 1 and " + options.length);
-        optionPicked = sc.nextInt() - 1;
-      }
-      return optionPicked;
-    } else {
-      // may need to catch invalid input or input that isnt a number
-      return sc.nextInt();
-    }
-}
-
 
 }
