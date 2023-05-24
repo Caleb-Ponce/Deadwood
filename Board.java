@@ -4,7 +4,7 @@ public class Board{
     private Room[] rooms;            // trailer = rooms[10], office = rooms[11]
     private Scene[] scenes;
     private int sceneCount;
-    public CastingOffice castingOffice;
+    public CastingOffice castingOffice = new CastingOffice();
 
     public Board(){
         XMLParser Xml = new XMLParser();
@@ -29,8 +29,9 @@ public class Board{
       for(int i = 0; i < 10; i++){
         int randomScene = rand.nextInt(curScenes.length); //get index or frandom scene
         this.rooms[i].addScene(curScenes[randomScene]);
+        curScenes[randomScene].setRoom(this.rooms[i]);
+        this.rooms[i].scene.setOffCard(this.rooms[i].getPositions());
         //remove scene from list of usable scenes
-        //maybe switch to storing scenes in linked list for better optimization
         Scene[] copy = new Scene[curScenes.length - 1];
         for (int n = 0, j = 0; n < curScenes.length; n++) {
             if (n < randomScene) {
@@ -70,10 +71,16 @@ public class Board{
 
     public void lowerSceneCount() {
       this.sceneCount--;
+      if (this.sceneCount <= 1) {
+        GameManager.getGameManager().endDay();
+      }
     }
 
     public Room[] getRooms(){
         return this.rooms;
+    }
+    public CastingOffice getCastingOffice(){
+        return this.castingOffice;
     }
     public Scene[] getScenes(){
       return this.scenes;

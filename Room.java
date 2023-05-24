@@ -3,8 +3,9 @@ public class Room{
     private String[] neighbors;
     private String[] area;
     private int shotCounters;
+    private int shotsComplete = 0;
     private Position[] positions;
-    public Scene scene;
+    public Scene scene = null;
 
     public Room(String name, String[] neighbors, String[] area, int shotCounters, Position[] positions){
         this.name = name;
@@ -13,9 +14,12 @@ public class Room{
         this.shotCounters = shotCounters;
         this.positions = positions;
     }
-    public int removeShotCounter() {
-        this.shotCounters--;
-        return this.shotCounters;
+    public void removeShotCounter() {
+        this.shotsComplete++;
+        if (this.shotsComplete == this.shotCounters){
+          this.scene.endScene();
+          this.shotsComplete = 0;
+        }
     }
     public void addScene(Scene scene){
         this.scene = scene;
@@ -33,7 +37,7 @@ public class Room{
     }
 
     public int getShotCounters(){
-      return this.shotCounters;
+      return this.shotCounters - this.shotsComplete;
     }
 
     public String[] getNeighbors(){

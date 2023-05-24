@@ -22,7 +22,7 @@ public class Position{
       return this.rank;
     }
 
-    public String getline() {
+    public String getLine() {
       return this.line;
     }
 
@@ -35,6 +35,9 @@ public class Position{
         return this.player;
       }
       return null;
+    }
+    public void setPlayer(Player player) {
+      this.player = player;
     }
 
     public void clearPose(){

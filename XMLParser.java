@@ -121,7 +121,7 @@ public class XMLParser{
       String[] officeNeighborsList = new String[trailerNeighbors.getLength()];
 
       for (int i = 0; i < officeNeighbors.getLength(); i++) {
-        Element elementAttribute = (Element) trailerNeighbors.item(i);
+        Element elementAttribute = (Element) officeNeighbors.item(i);
         officeNeighborsList[i] = elementAttribute.getAttribute("name");
       }
       Element areaoffice = (Element) officeElem.getElementsByTagName("area").item(0);
@@ -200,7 +200,7 @@ public class XMLParser{
     return null;
   }
 
-  public String[] parseUpgrades() {
+  public String[] parseUpgrades(CastingOffice cast) {
     // positions created by the board are not on card
     // position defined as part in the xml
     // TODO parse Trailer and office
@@ -220,9 +220,9 @@ public class XMLParser{
         </upgrade>
       */
       String[] upgrade = new String[list.getLength()];
+      int[] costs = new int[list.getLength()];
       for (int temp = 0; temp < list.getLength(); temp++) {
         Node nNode = list.item(temp);
-
         if (nNode.getNodeType() == Node.ELEMENT_NODE) {
           Element elem = (Element) nNode;
           String name = elem.getAttribute("level");
@@ -237,10 +237,12 @@ public class XMLParser{
           upgradeArea[3] = area.getAttribute("w");
 
           String curUpgrade = name + " " + currency + " " + amt;
+          costs[temp] = Integer.parseInt(amt);
           upgrade[temp] = curUpgrade;
         }
       }
-
+      cast.setCosts(costs);
+      return upgrade;
     }
     catch (Exception e) {
        e.printStackTrace();
