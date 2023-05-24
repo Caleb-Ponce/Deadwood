@@ -55,7 +55,7 @@ public class Scene{
     public void addPlayer(){
       this.currentPlayers.add(this.player)
     }
-
+    
     public String getName() {
       return this.name;
     }
