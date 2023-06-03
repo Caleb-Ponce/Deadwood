@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Board{
-    private Room[] rooms;            // trailer = rooms[10], office = rooms[11]
+    private static Room[] rooms;            // trailer = rooms[10], office = rooms[11]
     private Scene[] scenes;
     private int sceneCount;
     public CastingOffice castingOffice = new CastingOffice();
@@ -14,9 +14,10 @@ public class Board{
 
     public boolean movePiece(String location, Player player) {
       // future, used with gui can be used with terminal based
-        for (Room curRoom : this.rooms) {
+        for (Room curRoom : rooms) {
           if (curRoom.getName().equals(location)){
             player.setRoom(curRoom);
+            BoardLayersListener.movePlayer(1, curRoom.getName());
             return true;
           }
         }
@@ -28,9 +29,9 @@ public class Board{
       Scene[] curScenes = this.scenes;
       for(int i = 0; i < 10; i++){
         int randomScene = rand.nextInt(curScenes.length); //get index or frandom scene
-        this.rooms[i].addScene(curScenes[randomScene]);
-        curScenes[randomScene].setRoom(this.rooms[i]);
-        this.rooms[i].scene.setOffCard(this.rooms[i].getPositions());
+        rooms[i].addScene(curScenes[randomScene]);
+        curScenes[randomScene].setRoom(rooms[i]);
+        rooms[i].scene.setOffCard(rooms[i].getPositions());
         //remove scene from list of usable scenes
         Scene[] copy = new Scene[curScenes.length - 1];
         for (int n = 0, j = 0; n < curScenes.length; n++) {
@@ -49,14 +50,14 @@ public class Board{
     }
 
     public void clearScenes(){
-      for (Room room : this.rooms) {
+      for (Room room : rooms) {
         room.removeScene();
       }
       this.sceneCount = 0;
     }
 
-    public Room getRoom(String name) {
-      for (Room curRoom : this.rooms) {
+    public static Room getRoom(String name) {
+      for (Room curRoom : rooms) {
         String curName = curRoom.getName();
         if (name.equals(curName)){
           return curRoom;
@@ -77,7 +78,7 @@ public class Board{
     }
 
     public Room[] getRooms(){
-        return this.rooms;
+        return rooms;
     }
     public CastingOffice getCastingOffice(){
         return this.castingOffice;

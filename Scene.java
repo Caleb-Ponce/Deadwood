@@ -1,5 +1,7 @@
 import java.util.*;
 import java.util.Arrays;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Scene{
     private String name;
@@ -22,33 +24,37 @@ public class Scene{
     }
 
     public void act(Player player, Position pos) {
-      Controller controller = new Controller();
-      System.out.println();
-      System.out.println("This scene has a budget of " + this.budget + " and " + this.room.getShotCounters() + " shot counters left");
-      System.out.println(player.getName() + " currently has " + player.getRehearsalCounters() + " Rehearsal counters");
-      System.out.println("Your character is: " + pos.getName() + ", your line is: " + pos.getLine());
-      System.out.println();
+      JFrame popup = new JFrame("popup");
+      JOptionPane.showMessageDialog(popup, "This scene has a budget of " + this.budget + " and " + this.room.getShotCounters() + " shot counters left\n" +
+                                            player.getName() + " currently has " + player.getRehearsalCounters() + " Rehearsal counters\nYour character is: " 
+                                            + pos.getName() + ", your line is: " + pos.getLine());
       boolean playerCounters = this.checkPlayerCounters(player);
       if (playerCounters) {
-        System.out.println("Looks like you have rehearsed enough to already pass the roll on the scene");
-        System.out.println();
+        JOptionPane.showMessageDialog(popup, "Looks like you have rehearsed enough to already pass the roll on the scene");
         this.payForWork(player, true, pos.getOnCard());
         this.room.removeShotCounter();
       } else {
-        String message = "Looks like you are tied up on a scene would you like to: ";
         String[] actRehearse = new String[]{"Act", "Rehearse"};
-        int option = controller.getInputInt(message, actRehearse);
+        int option = JOptionPane.showOptionDialog(popup,
+      "Act or Reherse ",
+      "Looks like you are tied up on a scene would you like to: ",
+      JOptionPane.YES_NO_CANCEL_OPTION,
+      JOptionPane.QUESTION_MESSAGE,
+      null,
+      actRehearse,
+      actRehearse[1]);
+
+
         if (option == 0) {
           int roll = (int)((Math.random() * (6 - 1)) + 1) + player.getRehearsalCounters();
           if (roll >= this.budget) {
             // Print success
-            System.out.println();
-            System.out.println("Your roll: " + String.valueOf(roll) + ", Success!!!");
+            JOptionPane.showMessageDialog(popup, "Your roll: " + String.valueOf(roll) + ", Success!!!");
             this.payForWork(player, true, pos.getOnCard());
             this.room.removeShotCounter();
           } else {
             //printFail
-            System.out.println("Your roll: " + String.valueOf(roll) + ", Whoops");
+            JOptionPane.showMessageDialog(popup, "Your roll: " + String.valueOf(roll) + ", Whoops");
             this.payForWork(player, false, pos.getOnCard());
           }
         } else if (option == 1) {
@@ -84,14 +90,15 @@ public class Scene{
 
         // check if there is a player on card.
         boolean playerOnCard = false;
+        JFrame popup = new JFrame("popup");
         for (Position pos : this.positionsOnCard) {
           if (pos.getPlayer() != null) {
             playerOnCard = true;
           }
         }
         if (!playerOnCard) {
-          System.out.println("Scene: " + this.name + " has ended players have been returned to the room");
-          System.out.println("no one on the card, no payments made");
+          JOptionPane.showMessageDialog(popup, "Scene: " + this.name + " has ended players have been returned to the room\nNo one on the card, no payments made");
+          
           return;
         }
         // logic for paying out players
@@ -113,41 +120,40 @@ public class Scene{
           }
           j--;
         }
-        System.out.println("Scene: " + this.name + " has ended players have been returned to the room");
-        System.out.println("Players on card paid bonus money");
+        JOptionPane.showMessageDialog(popup, "Scene: " + this.name + " has ended players have been returned to the room\nPlayers on card paid bonus money");
     }
 
     public void payForWork(Player player, boolean success, boolean onCard){
       // get paid based on if you were on the card or off and if it was successfull
+      JFrame popup = new JFrame("popup");
       if (onCard) {
         if (success) {
           player.addCredits(2);
-          System.out.println("You were paid 2 credits");
+          JOptionPane.showMessageDialog(popup, "You were paid 2 credits");
         }
       } else {
         if (success) {
           player.addMoney(1);
           player.addCredits(1);
-          System.out.println("You were paid $1 and 1 credit");
+          JOptionPane.showMessageDialog(popup, "You were paid $1 and 1 credit");
         } else {
           player.addMoney(1);
-          System.out.println("You were paid 1 dollar");
+          JOptionPane.showMessageDialog(popup, "You were paid 1 dollar");
         }
       }
     }
 
     public void joinScene(Player player){
-      Controller control = new Controller();
+
+      JFrame popup = new JFrame("popup");
       Position[] openPoses = this.checkCanJoin(player);
       if (openPoses.length == 0) {
         // maybe add logic for the next available position
-        System.out.println("Looks like there isn't a spot on the scene in this room that you can join.");
+        JOptionPane.showMessageDialog(popup, "Looks like there isn't a spot on the scene in this room that you can join.");
         return;
       }
-      System.out.println();
-      System.out.println("Scene Name: "  + this.name + ", Description: ");
-      System.out.println(this.description);
-      System.out.println("This scene has a budget of " + this.budget + " and " + this.room.getShotCounters() + " shot counters left");
+      JOptionPane.showMessageDialog(popup, "Scene Name: "  + this.name + ", Description: \n" + this.description + "\nThis scene has a budget of " + this.budget + 
+                                           " and " + this.room.getShotCounters() + " shot counters left");
       String[] posenames = new String[openPoses.length + 1];
       posenames[0] = "CANCEL";
       for (int i = 1; i <= openPoses.length; i++) {
@@ -161,15 +167,21 @@ public class Scene{
         }
         posenames[i] = name + ", rank: " + rank + ", " + oncard;
       }
-      String message = "Please choose a Position to join the scene: ";
-      int choice = control.getInputInt(message, posenames);
+      int choice = JOptionPane.showOptionDialog(popup,
+      "What Role? ",
+      "Please choose a Position to join the scene: ",
+      JOptionPane.YES_NO_CANCEL_OPTION,
+      JOptionPane.QUESTION_MESSAGE,
+      null,
+      posenames,
+      posenames[1]);
       if (choice == 0) {
         return;
       }
       player.setPose(openPoses[choice - 1]);
       openPoses[choice - 1].setPlayer(player);
       player.setOnCard(true);
-      System.out.println("you successfully joined the scene!");
+      JOptionPane.showMessageDialog(popup, "You have successfully joined the scene!");
       this.currentPlayers.add(player);
   }
 

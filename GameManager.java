@@ -1,13 +1,18 @@
 import java.util.*;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 public class GameManager{
   // probably make this singleton
   public Player[] players;
   public Board board;
+  public BoardLayersListener boardLayersListener;
   public int numbPlayers;
   public int days;
   public int currentRound;
   public boolean endGame;
   private static GameManager manager = null;
+
 
   public static GameManager getGameManager() {
     if (manager == null) {
@@ -18,16 +23,18 @@ public class GameManager{
     return manager;
   }
 
-  public void startGame(String numPlayers) {
-    Controller control = new Controller();
+  public void startGame(int numPlayers) {
+    
     this.board = new Board();
+    //set up board
+    BoardLayersListener gameBoard = BoardLayersListener.createBoard();
     // get how many players
-    this.numbPlayers = Integer.parseInt(numPlayers);
+    //this.numbPlayers = Integer.valueOf(JOptionPane.showInputDialog(board, "How many players?"));
+    numbPlayers = BoardLayersListener.getPlayerNum(gameBoard);
+
     if (this.numbPlayers < 2 || this.numbPlayers > 8) {
-      System.out.println("number of players out of bounds");
-      String message = "please enter the number of players: ";
-      String[] testOptions = new String[]{"CANCEL", "2 Players", "3 Players", "4 Players", "5 Players", "6 Players", "7 Players", "8 Players"};
-      this.numbPlayers = control.getInputInt(message, testOptions);
+      boardLayersListener.errorMessage(gameBoard);
+      this.numbPlayers = BoardLayersListener.getPlayerNum(gameBoard);
       this.numbPlayers++;
       if (this.numbPlayers == 0) {
         return;
@@ -68,14 +75,15 @@ public class GameManager{
     // loops from one player to the next
 
     //print game information here.
-    System.out.println("Welcome to DeadWood");
-    System.out.println("We are playing with " + this.numbPlayers + " players");
-    System.out.println("We will play " + this.days + " days");
-    System.out.println("The current day is " + this.currentRound);
+    
+    JFrame popup = new JFrame("popup");
+
+    JOptionPane.showMessageDialog(popup, "Welcome to DeadWood\nWe are playing with " + this.numbPlayers + 
+                                         " players\nWe will play " + this.days + " days\nThe current day is " + this.currentRound);
 
     //print player locations
 
-    Controller control = new Controller();
+   
     int i = 0;
     while(!this.endGame){
       // if in casting office
@@ -84,16 +92,16 @@ public class GameManager{
         i = 0;
       }
       Player curPlayer = this.players[i];
-      System.out.println();
-      System.out.println("Player " + curPlayer.getName() + "'s turn!");
-      System.out.println("You have; dollars: " + curPlayer.getMoney() + ", Credits: "+ curPlayer.getCredits() + ", Rank: " + curPlayer.getRank());
-      System.out.println();
+
+      JOptionPane.showMessageDialog(popup, "Player " + curPlayer.getName() + "'s turn! \nYou have; \nDollars: "+
+                                           curPlayer.getMoney() + " \nCredits: "+ curPlayer.getCredits() + "\nRank: " + curPlayer.getRank());
+
+
       if (curPlayer.getOnCard()) {
         curPlayer.act();
       } else {
         boolean move = true;
-        String message = "What would you like to do: ";
-        String[] options = new String[]{"Don't Move", "Move", "End Turn", "Display rank prices", "Print Player locations", "End Game"};
+        String[] options = new String[]{"Don't Move", "Move", "End Turn", "End Game"};
         while (true) {
           // change some options based on the room
 
@@ -110,18 +118,25 @@ public class GameManager{
             options[0] = "Get Scene Info";
           }
 
-          int action = control.getInputInt(message, options);
+
+          int action = JOptionPane.showOptionDialog(popup,
+          "What would you like to do: ",
+          curPlayer.getName() + "'s Turn",
+          JOptionPane.YES_NO_CANCEL_OPTION,
+          JOptionPane.QUESTION_MESSAGE,
+          null,
+          options,
+          options[2]);
+
           if (action == 0) {
             // dont move
             if (curPlayer.getOnCard()){
               Scene scene = curPlayer.getRoom().getScene();
-              System.out.println("Scene Name: "  + scene.getName() + ", Description: ");
-              System.out.println(scene.getDescription());
-              System.out.println("This scene has a budget of " + scene.getBudget() + " and " + curPlayer.getRoom().getShotCounters() + " shot counters left");
-              System.out.println(curPlayer.getName() + " currently has " + curPlayer.getRehearsalCounters() + " Rehearsal counters");
+              JOptionPane.showMessageDialog(popup, "Scene Name: "  + scene.getName() + ", Description: \n" + scene.getDescription() + "\nThis scene has a budget of " + scene.getBudget() + 
+                                           " and " + curPlayer.getRoom().getShotCounters() + " shot counters left");
             } else if (curPlayer.getRoom().getName().equals("office")) {
               // in the casting office
-              System.out.println("Your current rank is: " + curPlayer.getRank());
+              JOptionPane.showMessageDialog(popup, "Your current rank is: " + curPlayer.getRank());
               this.board.getCastingOffice().promptPlayer(curPlayer);
             } else if (curPlayer.getRoom().getScene() != null) {
               // in a room with a scene
@@ -136,22 +151,14 @@ public class GameManager{
               curPlayer.move();
               move = false;
             } else {
-              System.out.println();
-              System.out.println("Sorry no moves left");
-              System.out.println();
+              JOptionPane.showMessageDialog(popup, "No Moves Left.",
+        "No More Moves :(", JOptionPane.ERROR_MESSAGE);
             }
           } else if (action == 2) {
             // end turn
             break;
           } else if (action == 3) {
-            // get upgrade costs
-            System.out.println("Your current rank is: " + curPlayer.getRank());
-            this.board.getCastingOffice().printRanks();
-          } else if (action == 4) {
-            // get player locations
-            this.printPlayerLocations();
-          } else if (action == 5) {
-            // get player locations
+            // end game
             this.endGame();
             break;
           }
@@ -161,14 +168,16 @@ public class GameManager{
     }
   }
 
-  public void printPlayerLocations() {
+  /*public void printPlayerLocations() {
+
+    
     System.out.println();
     System.out.println("Scenes left on the board: " + this.board.getSceneCount());
     for (Player player : this.players) {
       System.out.println(player.getName() + " is in the " + player.getRoom().getName());
     }
     System.out.println();
-  }
+  }*/
 
   public void resetBoard() {
     String trailer = "trailer";
@@ -182,16 +191,13 @@ public class GameManager{
   }
 
   public void endDay() {
+    JFrame popup = new JFrame("popup");
     this.resetBoard();
     this.currentRound++;
     if (this.currentRound > this.days) {
       this.endGame();
     }
-    System.out.println();
-    System.out.println("The Day has ended");
-    System.out.println("It is now day number " + this.currentRound);
-    System.out.println("All players are now in the trailer");
-    System.out.println();
+    JOptionPane.showMessageDialog(popup, "The Day has ended\nIt is now day number " + this.currentRound + "All players are now in the trailer");
   }
 
   public Player[] getPlayers() {
@@ -199,6 +205,7 @@ public class GameManager{
   }
 
   public void endGame() {
+    JFrame popup = new JFrame("popup");
     Integer[] finalScores = new Integer[numbPlayers];
     int biggest = 0;
     int winner = 0;
@@ -222,14 +229,14 @@ public class GameManager{
       }
     }
     if (tie) {
-      System.out.println("There is a TIE!!!");
-      System.out.println("The winners are");
+      String[] winners = new String[9];
       for (int i = 0; i < tiers.size(); i++){
-        System.out.println(tiers.get(i).getName());
+        winners[i]=(tiers.get(i).getName());
       }
-      System.out.println("with " + biggest + " points!!!");
+      JOptionPane.showMessageDialog(popup, "There is a TIE!!!\nThe winners are"+ winners[0] + " " + winners[1] + "with " + biggest + " points!!!");
+
     } else {
-      System.out.println("Player " + winner + ": wins with " + finalScores[winner] + " points");
+      JOptionPane.showMessageDialog(popup, "Player " + (winner+1) + ": wins with " + finalScores[winner] + " points");
     }
     this.endGame = true;
   }

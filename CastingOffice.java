@@ -1,5 +1,7 @@
 import java.util.*;
 
+import javax.swing.*;
+
 public class CastingOffice{
     private String[] upgrades;
     //format: name + " " + currency + " " + amt
@@ -39,43 +41,38 @@ public class CastingOffice{
     }
 
     public void promptPlayer(Player player) {
-        System.out.println();
-        System.out.println("You have; dollars: " + player.getMoney() + " Credits: "+ player.getCredits() + " Rank: " + player.getRank());
-        System.out.println();
-        this.printRanks();
-        Controller control = new Controller();
+      JFrame popup = new JFrame("popup");
         String[] options = this.checkCanUpgrade(player);
         if (options.length == 0) {
           // add more logic to show you how much you have and the rank prices
-          System.out.println("you cannot upgrade at this time");
+          JOptionPane.showMessageDialog(popup, "you cannot upgrade at this time",
+      "Back to work!", JOptionPane.ERROR_MESSAGE);
           return;
         }
-
-        String message = "Please choose a rank option or choose none";
-        System.out.println("Your current rank is: " + player.getRank());
-        int optNum = control.getInputInt(message, options);
+        
+        int optNum = JOptionPane.showOptionDialog(popup,
+          "What would you like to do: ",
+          "Please choose a rank option or choose none",
+          JOptionPane.YES_NO_CANCEL_OPTION,
+          JOptionPane.QUESTION_MESSAGE,
+          null,
+          options,
+          options[0]);
         if (optNum == 0) {
           return;
         }
+        
+        String choice = JOptionPane.showInputDialog(popup, "would you like to use dollors or creddits:");
         String parts[] = options[optNum].split(" ");
-        if (parts[1].equals("dollar")) {
+        if (choice == "dollar" || choice == "dollars") {
           this.chargeForUpgrade(Integer.parseInt(parts[0]), 0, Integer.parseInt(parts[2]), player);
-        } else if (parts[1].equals("credit")) {
+        } else if (choice == "credit" || choice == "creddits") {
           this.chargeForUpgrade(Integer.parseInt(parts[0]), 1, Integer.parseInt(parts[2]), player);
         }
         player.setRank(Integer.parseInt(parts[0]));
-        System.out.println("your rank is now: " + parts[0]);
-    }
-
-    public void printRanks() {
-      System.out.println();
-      System.out.println("rank costs");
-      for (int i = 0; i < 5; i++) {
-        System.out.println("rank " + (i+2) + ":");
-        System.out.println(this.upgrades[i]);
-        System.out.println(this.upgrades[i+5]);
-      }
-      System.out.println();
+        BoardLayersListener.rankUp(player.getRank(), player.getColor());
+        JOptionPane.showMessageDialog(popup, "your rank is now: " + parts[0]);
+        
     }
 
     public void setCosts(int[] costs) {

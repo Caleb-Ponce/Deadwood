@@ -1,4 +1,5 @@
-import java.util.Scanner;
+import javax.swing.*;
+import javax.swing.JOptionPane;
 
 public class Player{
     private int money = 0;
@@ -9,43 +10,43 @@ public class Player{
     private boolean onCard = false;
     private Position pose = null;
     private String name;
+    private BoardLayersListener board;
+    private char color;
+    
 
     public Player(Room trailer){
-      Scanner sc = new Scanner(System.in);
-      System.out.println();
-      System.out.print("Enter name for player: ");
-      this.name = sc.nextLine();
+      this.name = BoardLayersListener.getPlayerName(board);
+      color = BoardLayersListener.addDice();
       this.room = trailer;
     }
 
     public Player(int money, int credits, Room trailer){
-      Scanner sc = new Scanner(System.in);
-      System.out.println();
-      System.out.print("Enter name for player: ");
-      this.name = sc.nextLine();
+      this.name = BoardLayersListener.getPlayerName(board);
+      BoardLayersListener.addDice();
       this.money = money;
       this.credits = credits;
       this.room = trailer;
     }
 
     public Player(int rank, Room trailer){
-      Scanner sc = new Scanner(System.in);
-      System.out.println();
-      System.out.print("Enter name for player: ");
-      this.name = sc.nextLine();
+      this.name = BoardLayersListener.getPlayerName(board);
+      BoardLayersListener.addDice();
       this.rank = rank;
       this.room = trailer;
     }
 
     public void move(){
-
-      Controller controller = new Controller();
+      JFrame popup = new JFrame("popup");
       String[] neighbors = this.room.getNeighbors();
       // prompt move to new room
-      System.out.println();
-      System.out.println("You are currently in the " + this.room.getName());
-      String message = "choose where to go: ";
-      int responce = controller.getInputInt(message, neighbors);
+      int responce = JOptionPane.showOptionDialog(popup,
+          "Where would you like to go: ",
+          "You are currently in the " + this.room.getName(),
+          JOptionPane.YES_NO_CANCEL_OPTION,
+          JOptionPane.QUESTION_MESSAGE,
+          null,
+          neighbors,
+          neighbors[2]);
       Room room = GameManager.getGameManager().getBoard().getRoom(neighbors[responce]);
       this.room = room;
     }
@@ -104,5 +105,8 @@ public class Player{
     }
     public String getName() {
       return this.name;
+    }
+    public char getColor() {
+      return this.color;
     }
 }

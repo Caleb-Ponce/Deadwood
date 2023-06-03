@@ -1,3 +1,5 @@
+import java.awt.geom.Area;
+
 public class Room{
     private String name;
     private String[] neighbors;
@@ -51,5 +53,8 @@ public class Room{
     }
     public Scene getScene(){
       return this.scene;
+    }
+    public String[] getArea(){
+      return this.area;
     }
 }
