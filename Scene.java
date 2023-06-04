@@ -52,6 +52,7 @@ public class Scene{
             JOptionPane.showMessageDialog(popup, "Your roll: " + String.valueOf(roll) + ", Success!!!");
             this.payForWork(player, true, pos.getOnCard());
             this.room.removeShotCounter();
+            BoardLayersListener.placeShot(this.room.getName());
           } else {
             //printFail
             JOptionPane.showMessageDialog(popup, "Your roll: " + String.valueOf(roll) + ", Whoops");

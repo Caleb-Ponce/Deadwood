@@ -17,7 +17,9 @@ public class Board{
         for (Room curRoom : rooms) {
           if (curRoom.getName().equals(location)){
             player.setRoom(curRoom);
-            BoardLayersListener.movePlayer(1, curRoom.getName());
+            BoardLayersListener.movePlayer(player.getnum(), curRoom.getName(), player.getRank(), player.getColor());
+            
+            
             return true;
           }
         }
@@ -28,10 +30,12 @@ public class Board{
       Random rand = new Random();
       Scene[] curScenes = this.scenes;
       for(int i = 0; i < 10; i++){
+        rooms[i].unvisit();
         int randomScene = rand.nextInt(curScenes.length); //get index or frandom scene
         rooms[i].addScene(curScenes[randomScene]);
         curScenes[randomScene].setRoom(rooms[i]);
         rooms[i].scene.setOffCard(rooms[i].getPositions());
+        BoardLayersListener.addCard(rooms[i].getName());
         //remove scene from list of usable scenes
         Scene[] copy = new Scene[curScenes.length - 1];
         for (int n = 0, j = 0; n < curScenes.length; n++) {
@@ -52,6 +56,7 @@ public class Board{
     public void clearScenes(){
       for (Room room : rooms) {
         room.removeScene();
+        
       }
       this.sceneCount = 0;
     }

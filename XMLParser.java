@@ -89,7 +89,7 @@ public class XMLParser{
             Position newPos = new Position(partName, partRank, partArea, partLine, false);
             positions[i] = newPos;
           }
-          Room newRoom = new Room(name, neighborsList, roomArea, numbTakes, positions);
+          Room newRoom = new Room(name, neighborsList, roomArea, takes, numbTakes, positions);
           rooms[temp] = newRoom;
         }
       }

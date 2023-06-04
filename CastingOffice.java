@@ -64,13 +64,13 @@ public class CastingOffice{
         
         String choice = JOptionPane.showInputDialog(popup, "would you like to use dollors or creddits:");
         String parts[] = options[optNum].split(" ");
-        if (choice == "dollar" || choice == "dollars") {
+        if (parts[2].equals("dollar")) {
           this.chargeForUpgrade(Integer.parseInt(parts[0]), 0, Integer.parseInt(parts[2]), player);
-        } else if (choice == "credit" || choice == "creddits") {
+        } else if (parts[2].equals("credit")) {
           this.chargeForUpgrade(Integer.parseInt(parts[0]), 1, Integer.parseInt(parts[2]), player);
         }
-        player.setRank(Integer.parseInt(parts[0]));
-        BoardLayersListener.rankUp(player.getRank(), player.getColor());
+        player.setRank(player.getRank()+1);
+        BoardLayersListener.rankUp(player.getnum(), player.getRank(), player.getColor());
         JOptionPane.showMessageDialog(popup, "your rank is now: " + parts[0]);
         
     }

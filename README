@@ -1,0 +1,4 @@
+HOW TO WORK THIS CODE:
+step 1: make sure everything is compiled, I use javac *.java
+step 2: run DeadWood with the comand java ./DeadWood
+step 3: play the game by following the prompts.

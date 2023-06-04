@@ -31,7 +31,6 @@ public class GameManager{
     // get how many players
     //this.numbPlayers = Integer.valueOf(JOptionPane.showInputDialog(board, "How many players?"));
     numbPlayers = BoardLayersListener.getPlayerNum(gameBoard);
-
     if (this.numbPlayers < 2 || this.numbPlayers > 8) {
       boardLayersListener.errorMessage(gameBoard);
       this.numbPlayers = BoardLayersListener.getPlayerNum(gameBoard);
@@ -168,17 +167,6 @@ public class GameManager{
     }
   }
 
-  /*public void printPlayerLocations() {
-
-    
-    System.out.println();
-    System.out.println("Scenes left on the board: " + this.board.getSceneCount());
-    for (Player player : this.players) {
-      System.out.println(player.getName() + " is in the " + player.getRoom().getName());
-    }
-    System.out.println();
-  }*/
-
   public void resetBoard() {
     String trailer = "trailer";
     for (Player player : players) {
@@ -233,7 +221,7 @@ public class GameManager{
       for (int i = 0; i < tiers.size(); i++){
         winners[i]=(tiers.get(i).getName());
       }
-      JOptionPane.showMessageDialog(popup, "There is a TIE!!!\nThe winners are"+ winners[0] + " " + winners[1] + "with " + biggest + " points!!!");
+      JOptionPane.showMessageDialog(popup, "There is a TIE!!!\nThe winners are "+ winners[0] + " with " + biggest + " points!!!");
 
     } else {
       JOptionPane.showMessageDialog(popup, "Player " + (winner+1) + ": wins with " + finalScores[winner] + " points");
@@ -244,6 +232,7 @@ public class GameManager{
   public Board getBoard() {
     return this.board;
   }
+
 
 
 

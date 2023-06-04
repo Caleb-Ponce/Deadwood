@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <cards>
   <card name="Evil Wears a Hat" img="01.png" budget="4">
-    <scene number="7">
+    <scene number="1">
       Calhoun is separated from the group during a white-knuckled chase near Desperation Bluff.
     </scene>
     <part name="Defrocked Priest" level="2">
@@ -18,7 +18,7 @@
     </part>
   </card>
   <card name="Law and the Old West" img="02.png" budget="3">
-    <scene number="20">
+    <scene number="2">
       Charlie "Three Guns" Henderson cooperates with Johnny Law and reluctantly
       enters the witless protection program.
     </scene>
@@ -36,7 +36,7 @@
     </part>
   </card>
   <card name="The Life and Times of John Skywater" img="03.png" budget="5">
-    <scene number="22">
+    <scene number="3">
       Disheartened by his lack of business acumen and his poor choice of
       investment partners, John Skywater sets off into the Cree Nation to
       convince them to kidnap his wife.
@@ -51,7 +51,7 @@
     </part>
   </card>
   <card name="My Years on the Prairie" img="04.png" budget="5">
-    <scene number="32">
+    <scene number="4">
       Virgil and Stacy set out at midnight to track down the stray cows, unaware
       that they are being pursued by inch-high aliens from outer space.
     </scene>
@@ -69,7 +69,7 @@
     </part>
   </card>
   <card name="Buffalo Bill: The Lost Years" img="05.png" budget="4">
-    <scene number="12">
+    <scene number="5">
       Buffalo Bill's companion Marty disappears in a freak electrical storm.
       Bill enlists the aid of the Sidekick Friends network.
     </scene>
@@ -87,7 +87,7 @@
     </part>
   </card>
   <card name="Square Deal City" img="06.png" budget="6">
-    <scene number="14">
+    <scene number="6">
       Douglas and Katherine confront Aunt Martha about her missing pies.  Devin
       sulks quietly in a side room. 
     </scene>
@@ -105,7 +105,7 @@
     </part>
   </card>
   <card name="Davy Crockett: A Drunkard's Tale" img="07.png" budget="4">
-    <scene number="31">
+    <scene number="7">
       Robert enlists the aid of several farm animals in order to ascertain the
       efficacy of his new hangover remedy.
     </scene>
@@ -119,7 +119,7 @@
     </part>
   </card>
   <card name="The Way the West Was Run" img="08.png" budget="4">
-    <scene number="34">
+    <scene number="8">
       Jose explains patiently, but with thinly veiled contempt, the intricacies
       of Arizona bureaucracy, as though speaking to a simple and distracted child.
     </scene>
@@ -137,7 +137,7 @@
     </part>
   </card>
   <card name="Down in the Valley" img="09.png" budget="3">
-    <scene number="24">
+    <scene number="9">
       A tripped waiter is the spark igniting a brawl of cataclysmic
       proportions.  Walter is injured in the neck.
     </scene>
@@ -155,7 +155,7 @@
     </part>
   </card>
   <card name="Ol' Shooter and Little Doll" img="10.png" budget="4">
-    <scene number="14">
+    <scene number="10">
       Shooter discovers that he has been proceeding for days with no trousers.
       This causes him no small embarrassment as he searches for them with Little
       Doll. 
@@ -174,7 +174,7 @@
     </part>
   </card>
   <card name="The Robbers of Trains" img="11.png" budget="4">
-    <scene number="19">
+    <scene number="11">
       Coogan confronts the toughest thug in his gang, Big Jake, in an
       abbreviated knife fight.  Coogan settles the dispute with fearless guile
       and a kick in the family jewels.
@@ -203,7 +203,7 @@
     </part>
   </card>
   <card name="A Man Called 'Cow'" img="13.png" budget="3">
-    <scene number="16">
+    <scene number="13">
       Nothing will settle the debates among the skeptical locals, short of a
       demonstration of Hector's special talents.
     </scene>
@@ -217,7 +217,7 @@
     </part>
   </card>
   <card name="Taffy Commercial" img="14.png" budget="2">
-    <scene number="2">
+    <scene number="14">
       Jackson encourages the children to eat only taffy, because gum can kill
       them stone dead.
     </scene>
@@ -231,7 +231,7 @@
     </part>
   </card>
   <card name="Gum Commercial" img="15.png" budget="2">
-    <scene number="3">
+    <scene number="15">
       Inspector Pete speaks to a riveted audience about the many hidden dangers
       of taffy, not the least of which is that taffy can kill you stone dead.
     </scene>
@@ -245,7 +245,7 @@
     </part>
   </card>
   <card name="Jesse James: Man of Action" img="16.png" budget="5">
-    <scene number="8">
+    <scene number="16">
       Jesse's brothers Jed and Henry throw him a surprise birthday party.
       Jesse's nerves get the better of him when the birthday cake explodes.
     </scene>
@@ -263,7 +263,7 @@
     </part>
   </card>
   <card name="Disaster at Flying J" img="17.png" budget="5">
-    <scene number="6">
+    <scene number="17">
       After the mine explosion, the traveling circus takes time out to get drunk
       and start a fight.
     </scene>
@@ -281,7 +281,7 @@
     </part>
   </card>
   <card name="Shakespear in Lubbock" img="18.png" budget="3">
-    <scene number="23">
+    <scene number="18">
       William decides that it is time to be movin' on.  Julia convinces him to
       stick around just long enough to get into big trouble.
     </scene>
@@ -299,7 +299,7 @@
     </part>
   </card>
   <card name="Go West, You!" img="19.png" budget="3">
-    <scene number="30">
+    <scene number="19">
       Susan and Peter encounter some of the perils of the Badlands: rutted mud
       roads, torrential rain storms, and a bad case of "grumbly tummy."
     </scene>
@@ -313,7 +313,7 @@
     </part>
   </card>
   <card name="The Life and Times of John Skywater" img="20.png" budget="5">
-    <scene number="15">
+    <scene number="20">
       John discovers his long-lost sister Marcie, and instructs her in the ways
       of gunfighting and whiskey distillation.
     </scene>
@@ -331,7 +331,7 @@
     </part>
   </card>
   <card name="Gun! The Musical" img="21.png" budget="6">
-    <scene number="25">
+    <scene number="21">
       A song and dance extravaganza, "Hunka Hunka Burnin' Lead."
     </scene>
     <part name="Looks like Elvis" level="4">
@@ -348,7 +348,7 @@
     </part>
   </card>
   <card name="Humor at the Expense of Others" img="22.png" budget="5">
-    <scene number="16">
+    <scene number="22">
       Phil and his cohort of unfeeling smart-mouths make fun of Sancho and his
       great big hat.
     </scene>
@@ -366,7 +366,7 @@
     </part>
   </card>
   <card name="The Search for Maggie White" img="23.png" budget="6">
-    <scene number="12">
+    <scene number="23">
       Alone in the wilderness, Maggie makes the best of her situation. In what
       seems like no time at all, she constructs a sturdy two-story house from
       branches and mud.
@@ -381,7 +381,7 @@
     </part>
   </card>
     <card name="Picante Sauce Commercial" img="24.png" budget="2">
-    <scene number="1">
+    <scene number="24">
       A dozen grizzled cowboys surround a fire. Suddenly, they exclaim, "That's
       not mayonnaise!"
     </scene>
@@ -395,7 +395,7 @@
     </part>
   </card>
   <card name="Jesse James: Man of Action" img="25.png" budget="5">
-    <scene number="14">
+    <scene number="25">
       A hail of gunfire results when Jesse's friend Barton marries Jesse's
       childhood sweetheart.
     </scene>
@@ -413,7 +413,7 @@
     </part>
   </card>
   <card name="One False Step for Mankind" img="26.png" budget="6">
-    <scene number="21">
+    <scene number="26">
       After a dozen failed attempts, one rocket carries Horatio and his six
       children to the Moon, where they enjoy a picnic and a spirited game of
       badminton.
@@ -432,7 +432,7 @@
     </part>
   </card>
   <card name="Thirteen the Hard Way" img="27.png" budget="5">
-    <scene number="15">
+    <scene number="27">
       After some delay, the Pony Express arrives. Isaac, Gwen, Francis, Terry,
       Conrad, Brooke, Jerry, Howard, MacNeill, Jones, Spike, Cornwall and
       Crawford are all there.
@@ -451,7 +451,7 @@
     </part>
   </card>
   <card name="How They Get Milk" img="28.png" budget="4">
-    <scene number="2">
+    <scene number="28">
       Josie asks the Milkman how they get milk. After a thoughtful pause, he
       begins. "Not like you'd expect!"
     </scene>
@@ -469,7 +469,7 @@
     </part>
   </card>
     <card name="My Years on the Prairie" img="29.png" budget="5">
-    <scene number="27">
+    <scene number="29">
       Louise takes instruction from Henry, the neighbor boy, in an absurdly
       suggestive explanation of how to plow a field.
     </scene>
@@ -487,7 +487,7 @@
     </part>
   </card>
   <card name="Davy Crockett: A Drunkard's Tale" img="30.png" budget="4">
-    <scene number="12">
+    <scene number="30">
       In an absurd dream sequence, Crockett recalls an episode of fear and chaos
       in which his childhood friend Timmy was trapped at the bottom of a well.
     </scene>
@@ -505,7 +505,7 @@
     </part>
   </card>
   <card name="Czechs in the Sonora" img="31.png" budget="4">
-    <scene number="25">
+    <scene number="31">
       Bob reverts to his ancestral ways in a short fight
       over a disembodied hand.
     </scene>
@@ -519,7 +519,7 @@
     </part>
   </card>
   <card name="Swing 'em Wide" img="32.png" budget="6">
-    <scene number="19">
+    <scene number="32">
       Black Jack invites Dixon and The Captain to a late-night poker
       game. Little do they know that Gertrude and Isabella await them at the
       table.
@@ -538,7 +538,7 @@
     </part>
   </card>
   <card name="Swing 'em Wide" img="33.png" budget="6">
-    <scene number="35">
+    <scene number="33">
       Hector makes a surprising discovery behind the Chinese grocery store.
     </scene>
     <part name="Liberated Nun" level="3">
@@ -555,7 +555,7 @@
     </part>
   </card>
   <card name="Trials of the First Pioneers" img="34.png" budget="4">
-    <scene number="5">
+    <scene number="34">
       A fire breaks out in the town livery. Before long, the surrounding
       buildings are engulfed in flame. The world falls into chaos.
     </scene>
@@ -573,7 +573,7 @@
     </part>
   </card>
   <card name="How the Grinch Stole Texas" img="35.png" budget="5">
-    <scene number="9">
+    <scene number="35">
       The doe-eyed citizens of El Paso gather together around a warm fire and
       pray for the safety of those poor souls in Oklahoma. It almost works.
     </scene>
@@ -591,7 +591,7 @@
     </part>
   </card>
   <card name="J. Robert Lucky, Man of Substance" img="36.png" budget="4">
-    <scene number="13">
+    <scene number="36">
       Horace and Mathilde discover that the mysterious orange powder filling
       Doctor Lucky's air vents is neither Agent Orange nor weaponized Tang, but
       a rare form of cheese mold.
@@ -610,7 +610,7 @@
     </part>
   </card>
   <card name="Thirteen the Hard Way" img="37.png" budget="5">
-    <scene number="17">
+    <scene number="37">
       After operating for only six minutes, the Pony Express disbands and gives
       way to the international Telegraph and Railroad systems. Little boys cry.
     </scene>
@@ -628,7 +628,7 @@
     </part>
   </card>
   <card name="How They Get Milk" img="38.png" budget="4">
-    <scene number="8">
+    <scene number="38">
       Josie is thoroughly off milk at this point. The Milkman shows her one more
       way that she might not have heard of before.
     </scene>
@@ -646,7 +646,7 @@
     </part>
   </card>
   <card name="Breakin' in Trick Ponies" img="39.png" budget="3">
-    <scene number="19">
+    <scene number="39">
       Uncle Stewart reveals what to do when all else fails.
     </scene>
     <part name="Fraternity Pledge" level="2">

@@ -12,10 +12,12 @@ public class Player{
     private String name;
     private BoardLayersListener board;
     private char color;
+    private int num; 
     
 
     public Player(Room trailer){
       this.name = BoardLayersListener.getPlayerName(board);
+      num = BoardLayersListener.getPlayersNum();
       color = BoardLayersListener.addDice();
       this.room = trailer;
     }
@@ -48,6 +50,11 @@ public class Player{
           neighbors,
           neighbors[2]);
       Room room = GameManager.getGameManager().getBoard().getRoom(neighbors[responce]);
+      BoardLayersListener.movePlayer(getnum(), room.getName(), getRank(), getColor());
+      if(room.getName() != "office" && room.getName() != "trailer"){
+        BoardLayersListener.flipCard(room.getScene().getSceneNum(), room.getName());
+      }
+      room.visit();
       this.room = room;
     }
 
@@ -108,5 +115,8 @@ public class Player{
     }
     public char getColor() {
       return this.color;
+    }
+    public int getnum() {
+      return this.num;
     }
 }
