@@ -54,7 +54,7 @@ public class Player{
       if(room.getName() != "office" && room.getName() != "trailer"){
         BoardLayersListener.flipCard(room.getScene().getSceneNum(), room.getName());
       }
-      room.visit();
+      this.room.visit();
       this.room = room;
     }
 

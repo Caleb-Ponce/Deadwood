@@ -199,7 +199,7 @@ public class GameManager{
     int winner = 0;
     for (int i = 0; i < players.length; i++){
       finalScores[i] = this.players[i].getMoney() + this.players[i].getCredits() + (this.players[i].getRank()*5);
-      System.out.println(this.players[i].getName() + ": " + finalScores[i]);
+      //System.out.println(this.players[i].getName() + ": " + finalScores[i]);
       if (finalScores[i] > biggest) {
         biggest = finalScores[i];
         winner = i;

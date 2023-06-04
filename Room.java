@@ -71,7 +71,6 @@ public class Room{
       return this.area;
     }
     public Node getTakes(int index){
-      System.out.println(this.takesArea.item(index));
       return this.takesArea.item(index);
     }
     public static void visit(){

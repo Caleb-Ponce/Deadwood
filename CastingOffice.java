@@ -62,11 +62,11 @@ public class CastingOffice{
           return;
         }
         
-        String choice = JOptionPane.showInputDialog(popup, "would you like to use dollors or creddits:");
+
         String parts[] = options[optNum].split(" ");
-        if (parts[2].equals("dollar")) {
+        if (parts[1].equals("dollar")) {
           this.chargeForUpgrade(Integer.parseInt(parts[0]), 0, Integer.parseInt(parts[2]), player);
-        } else if (parts[2].equals("credit")) {
+        } else if (parts[1].equals("credit")) {
           this.chargeForUpgrade(Integer.parseInt(parts[0]), 1, Integer.parseInt(parts[2]), player);
         }
         player.setRank(player.getRank()+1);
